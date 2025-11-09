@@ -34,31 +34,40 @@ i = 1
 #file_name = input("enter the filename")
 file_name = "student_data_25.csv"
 inFile = open(file_name, "r")
-outFile = open(file_name + "_out.csv", "x")
+outFile = open(file_name + "_out.csv", "w")
+q = 0
 for line in inFile.readlines():
-     studentID = line[0:4]
-     line.replace(","," ")
-     x = line.split(" ")
-     total = 0
-     j = 0
-     for j in range(1,len(x)):
-          total = total + x[j]
-     mean = total / len(x)
-     mean = round(mean,2)
-     classification = ""
-     if mean >= 70:
-          classification = "1"
-     elif mean >= 60:
-          classification = "2:1"
-     elif mean >= 50:
-          classification = "2:2"
-     elif mean >= 40:
-          classification = "3"
+     if q != 0:
+          #line.replace(","," ")
+          x = line.split(",")
+          print(x)
+          print(type(x))
+          print(x[2])
+          total = 0
+          j = 1
+          for j in range(1,len(x)):
+               print(x[j])
+               num = int(x[j])
+               total = total + num
+          mean = total / len(x)
+          mean = round(mean,2)
+          classification = ""
+          if mean >= 70:
+               classification = "1"
+          elif mean >= 60:
+               classification = "2:1"
+          elif mean >= 50:
+               classification = "2:2"
+          elif mean >= 40:
+               classification = "3"
+          else:
+               classification = "F"
+          strMean = str(mean)
+          outFile.write(studentID+","+strMean+","+classification)
+          print(studentID,",",strMean,",",classification)
      else:
-          classification = "F"
-     strMean = str(mean)
-     outFile.write(studentID+","+strMean+","+classification)
-     print(studentID,",",strMean,",",classification)
+          q = 1
+     
 
 
      
