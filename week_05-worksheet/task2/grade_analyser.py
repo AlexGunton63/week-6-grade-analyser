@@ -31,26 +31,32 @@ Your code will only be tested on valid files in the format shown in the 4 exampl
 '''
 
 i = 1
-#file_name = input("enter the filename")
-file_name = "student_data_25.csv"
+file_name = input("enter the filename")
+#file_name = "student_data_50_A.csv"
 inFile = open(file_name, "r")
-outFile = open(file_name + "_out.csv", "w")
+outFile = open(file_name + "_out.csv", "x")
 q = 0
 for line in inFile.readlines():
      if q != 0:
           #line.replace(","," ")
-          x = line.split(",")
-          print(x)
-          print(type(x))
-          print(x[2])
+          x = list(line.split(","))
+          studentID = x[0]
+          #print(x)
+          #print(type(x))
+          #print(x[2])
           total = 0
           j = 1
+          totalNum = 0
           for j in range(1,len(x)):
-               print(x[j])
-               num = int(x[j])
-               total = total + num
-          mean = total / len(x)
-          mean = round(mean,2)
+               #print(x[j])
+               #print(type(x[j]))
+               try:
+                    num = int(x[j])
+                    total = total + num
+                    totalNum = totalNum + 1
+               except:
+                    continue
+          mean = round(total / totalNum,2)
           classification = ""
           if mean >= 70:
                classification = "1"
@@ -63,8 +69,8 @@ for line in inFile.readlines():
           else:
                classification = "F"
           strMean = str(mean)
-          outFile.write(studentID+","+strMean+","+classification)
-          print(studentID,",",strMean,",",classification)
+          outFile.writelines(studentID+","+strMean+","+classification+ '\n')
+          #print(studentID,",",strMean,",",classification)
      else:
           q = 1
      
