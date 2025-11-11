@@ -32,24 +32,17 @@ Your code will only be tested on valid files in the format shown in the 4 exampl
 
 i = 1
 file_name = input("enter the filename")
-#file_name = "student_data_50_A.csv"
 inFile = open(file_name, "r")
 outFile = open(file_name + "_out.csv", "x")
 q = 0
 for line in inFile.readlines():
      if q != 0:
-          #line.replace(","," ")
           x = list(line.split(","))
           studentID = x[0]
-          #print(x)
-          #print(type(x))
-          #print(x[2])
           total = 0
           j = 1
           totalNum = 0
           for j in range(1,len(x)):
-               #print(x[j])
-               #print(type(x[j]))
                try:
                     num = int(x[j])
                     total = total + num
@@ -69,9 +62,7 @@ for line in inFile.readlines():
           else:
                classification = "F"
           strMean = format(mean,'.2f')
-          #strMean = format(strMean, '.2f')
           outFile.writelines(studentID+","+strMean+","+classification+ '\n')
-          #print(studentID,",",strMean,",",classification)
      else:
           q = 1
      
