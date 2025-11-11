@@ -56,7 +56,7 @@ for line in inFile.readlines():
                     totalNum = totalNum + 1
                except:
                     continue
-          mean = round(total / totalNum,2)
+          mean = round(total/totalNum,2)
           classification = ""
           if mean >= 70:
                classification = "1"
@@ -68,7 +68,8 @@ for line in inFile.readlines():
                classification = "3"
           else:
                classification = "F"
-          strMean = str(mean)
+          strMean = format(mean,'.2f')
+          #strMean = format(strMean, '.2f')
           outFile.writelines(studentID+","+strMean+","+classification+ '\n')
           #print(studentID,",",strMean,",",classification)
      else:
